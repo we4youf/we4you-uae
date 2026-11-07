@@ -1,76 +1,105 @@
 "use client";
-import React from 'react';
-import './Contact.css';
 
-const PhoneIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-);
+import React, { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
+import { buildWhatsAppUrl, type ContactFormData } from "./contactWhatsApp";
+import "./Contact.css";
 
-const WhatsAppIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path></svg>
-);
-
-const ClockIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-);
+const initialFormData: ContactFormData = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setFormData((currentFormData) => ({ ...currentFormData, [name]: value }));
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    window.location.assign(buildWhatsAppUrl(formData));
+  };
+
   return (
-    <section id="contact" className="contact-section">
+    <section id="contact" className="contact-section py-section">
       <div className="container">
-        <h2 className="contact-title reveal-up">LET&apos;S WORK TOGETHER</h2>
+        <div className="contact-layout">
+          <div className="contact-intro reveal-up">
+            <p className="eyebrow">Start a conversation</p>
+            <h2 className="title-large contact-title">Let&apos;s work together</h2>
+            <p className="text-lead contact-description">
+              Tell us what you need and we&apos;ll continue the conversation with you on WhatsApp.
+            </p>
+          </div>
 
-        <div className="contact-grid">
-          <div className="contact-left">
+          <form className="contact-form reveal-up delay-100" onSubmit={handleSubmit}>
+            <div className="contact-form-grid">
+              <div className="contact-field">
+                <label htmlFor="contact-name">Your Name</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your Name"
+                  autoComplete="name"
+                  required
+                />
+              </div>
 
-            {/* Phone Card */}
-            <a href="tel:+971568152689" className="contact-card brutalist-border brutalist-shadow brutalist-interactive reveal-up delay-100">
-              <div className="contact-card-icon brutalist-border">
-                <PhoneIcon />
+              <div className="contact-field">
+                <label htmlFor="contact-email">Email Address</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email Address"
+                  autoComplete="email"
+                  required
+                />
               </div>
-              <div className="contact-card-content">
-                <h4>CALL US DIRECTLY</h4>
-                <p>+971 56 815 2689</p>
-              </div>
-            </a>
 
-            {/* WhatsApp Card */}
-            <a href="https://wa.me/971558325749" target="_blank" rel="noopener noreferrer" className="contact-card brutalist-border brutalist-shadow brutalist-interactive reveal-up delay-200">
-              <div className="contact-card-icon brutalist-border">
-                <WhatsAppIcon />
+              <div className="contact-field contact-field-full">
+                <label htmlFor="contact-subject">Subject</label>
+                <input
+                  id="contact-subject"
+                  name="subject"
+                  type="text"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Subject"
+                  required
+                />
               </div>
-              <div className="contact-card-content">
-                <h4>WHATSAPP US</h4>
-                <p>Message us on WhatsApp</p>
-              </div>
-            </a>
 
-            {/* Working Hours Card */}
-            <div className="contact-card brutalist-border brutalist-shadow reveal-up delay-300">
-              <div className="contact-card-icon brutalist-border">
-                <ClockIcon />
-              </div>
-              <div className="contact-card-content">
-                <h4>WORKING HOURS</h4>
-                <p>Quality products<br />Trusted service</p>
+              <div className="contact-field contact-field-full">
+                <label htmlFor="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Message"
+                  rows={6}
+                  required
+                />
               </div>
             </div>
 
-          </div>
-
-          <div className="contact-right">
-            <div className="map-container brutalist-border brutalist-shadow reveal-up delay-400">
-              <iframe
-                className="map-iframe"
-                src="https://www.google.com/maps?q=United+Arab+Emirates&output=embed"
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
-          </div>
+            <button className="contact-submit" type="submit">
+              Send via WhatsApp <span aria-hidden="true">↗</span>
+            </button>
+            <p className="contact-form-note">Your message will open directly in WhatsApp.</p>
+          </form>
         </div>
-
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import Hero from '@/tem-five/Hero'
 import About from '@/tem-five/About'
 import Services from '@/tem-five/Services'
 import WhyChooseUs from '@/tem-five/WhyChooseUs'
+import Contact from '@/tem-five/Contact'
 import LocationMap from '@/tem-five/LocationMap'
 import Footer from '@/tem-five/Footer'
 import ScrollToTop from '@/tem-five/ScrollToTop'
@@ -17,6 +18,7 @@ export default function Home() {
       <About />
       <Services />
       <WhyChooseUs />
+      <Contact />
       <LocationMap />
       <Footer />
       <FloatingWhatsApp />

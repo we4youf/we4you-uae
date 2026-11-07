@@ -5,7 +5,7 @@ import './Footer.css';
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="footer-section">
+    <footer id="footer" className="footer-section">
       <div className="container">
         <div className="footer-grid grid grid-cols-5">
           <div className="footer-col">
