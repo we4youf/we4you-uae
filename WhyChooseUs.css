@@ -1,0 +1,135 @@
+/* Inherits .theme-dark from globals.css */
+.why-section {
+  overflow: hidden;
+}
+
+.studio-gallery-container {
+  position: relative;
+  height: 60vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.studio-gallery {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.1s linear;
+}
+
+.gallery-center-text {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  mix-blend-mode: difference;
+}
+
+.polaroid {
+  position: absolute;
+  width: clamp(160px, 20vw, 260px);
+  aspect-ratio: 5 / 6;
+  background: var(--color-white);
+  padding: 10px 10px 40px 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+/* Distribute polaroids in a circle */
+.p-1 { margin-top: -120px; margin-left: -100px; transform: rotate(10deg) translateY(-250px); }
+.p-2 { margin-top: -120px; margin-left: -100px; transform: rotate(70deg) translateY(-250px); }
+.p-3 { margin-top: -120px; margin-left: -100px; transform: rotate(130deg) translateY(-250px); }
+.p-4 { margin-top: -120px; margin-left: -100px; transform: rotate(190deg) translateY(-250px); }
+.p-5 { margin-top: -120px; margin-left: -100px; transform: rotate(250deg) translateY(-250px); }
+.p-6 { margin-top: -120px; margin-left: -100px; transform: rotate(310deg) translateY(-250px); }
+
+@media (max-width: 768px) {
+  .studio-gallery-container {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  /* Keep the circle shape but reduce the radius for smaller screens */
+  .p-1 { transform: rotate(10deg) translateY(-140px); }
+  .p-2 { transform: rotate(70deg) translateY(-140px); }
+  .p-3 { transform: rotate(130deg) translateY(-140px); }
+  .p-4 { transform: rotate(190deg) translateY(-140px); }
+  .p-5 { transform: rotate(250deg) translateY(-140px); }
+  .p-6 { transform: rotate(310deg) translateY(-140px); }
+}
+
+/* Stats */
+.stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: clamp(2rem, 5vw, 4rem);
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  color: var(--color-white);
+}
+
+.stat-label {
+  color: var(--color-gray-400);
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+/* Client Trust */
+.client-trust {
+  margin-top: 10rem;
+  text-align: center;
+}
+
+.trust-headline {
+  margin-bottom: 4rem;
+  color: var(--color-gray-400);
+}
+
+.logos-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 3rem) clamp(2rem, 10vw, 5rem);
+}
+
+.logo-placeholder {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.logo-placeholder:hover {
+  opacity: 1;
+}
+
+.mt-20 { margin-top: 5rem; }
