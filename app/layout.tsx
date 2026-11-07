@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "../globals.css";
 import StructuredData from "@/components/StructuredData";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const siteTitle = "WE4YOU UAE | Trading, Printing & Digital Solutions";
+const siteUrl = "https://www.we4youfzellc.com";
+const siteTitle = "WE4YOU UAE | Trading, Printing & Digital Solutions in Ajman";
 const siteDescription =
-  "WE4YOU UAE is your trusted partner in Ajman for printing services, trading, import and export, and digital solutions.";
+  "WE4YOU FZE LLC is an Ajman, UAE business providing printing, trading, import and export, and digital solutions across the United Arab Emirates.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     "import export Ajman",
     "digital solutions UAE",
     "e-commerce web design UAE",
+    "printing materials UAE",
+    "electrical spare parts trading UAE",
   ],
   alternates: {
     canonical: "/",
@@ -57,6 +59,22 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     images: ["/assets/we4you-hero.webp"],
+  },
+  authors: [{ name: "WE4YOU FZE LLC", url: siteUrl }],
+  creator: "WE4YOU FZE LLC",
+  publisher: "WE4YOU FZE LLC",
+  applicationName: "WE4YOU UAE",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  other: {
+    "geo.region": "AE-AJ",
+    "geo.placename": "Ajman",
+    "business:contact_data:locality": "Ajman",
+    "business:contact_data:country_name": "United Arab Emirates",
   },
   icons: {
     icon: [{ url: "/assets/we4you-favicon.webp", type: "image/webp" }],

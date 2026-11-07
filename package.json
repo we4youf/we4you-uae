@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --test --experimental-strip-types tests/contact-whatsapp.test.mjs"
+    "test": "node --test --experimental-strip-types tests/contact-whatsapp.test.mjs tests/seo-surface.test.mjs"
   },
   "dependencies": {
     "next": "14.2.33",
